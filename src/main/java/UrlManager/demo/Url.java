@@ -1,5 +1,4 @@
-
-package URLManager.model;
+package UrlManager.demo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +14,6 @@ public class Url {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String endereco;
-    private String codigoCurto;
+    private String originalUrl;
+    private String shortUrl;
 }
