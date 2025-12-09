@@ -8,7 +8,7 @@ function App() {
     if (!url.trim()) return;
 
     try {
-      const response = await fetch("http://localhost:8080/api/urls", {
+      const response = await fetch("https://urlmanagerdev.onrender.com/api/urls", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ originalUrl: url }),
@@ -20,7 +20,7 @@ function App() {
 
       const data = await response.json();
 
-      setShort(`http://localhost:8080/api/r/${data.shortUrl}`);
+      setShort(`https://urlmanagerdev.onrender.com/api/r/${data.shortUrl}`);
 
     } catch (error) {
       alert("Erro ao encurtar URL");
@@ -43,7 +43,7 @@ function App() {
 
       {short && (
         <p>
-          <a href={short} target="_blank">{short}</a>
+          <a href={short} target="_blank" rel="noreferrer">{short}</a>
         </p>
       )}
     </div>
