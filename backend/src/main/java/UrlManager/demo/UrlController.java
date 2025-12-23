@@ -1,6 +1,7 @@
 package UrlManager.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,5 +46,36 @@ public class UrlController {
         } else {
             return ResponseEntity.notFound().build();
         }
+=======
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
+
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "*")
+public class UrlController {
+
+    @Autowired
+    private UrlService urlService;
+
+    // POST → cria URL encurtada
+    @PostMapping("/urls")
+    public Url shorten(@RequestBody Url url) {
+        return urlService.shortenUrl(url.getOriginalUrl());
+    }
+
+    // GET → redireciona usando o shortUrl
+    @GetMapping("/r/{shortUrl}")
+    public RedirectView redirect(@PathVariable String shortUrl) {
+        Url url = urlService.findByShortUrl(shortUrl);
+
+        if (url == null) {
+            throw new RuntimeException("URL não encontrada");
+        }
+
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl(url.getOriginalUrl());
+        return redirectView;
+>>>>>>> b6df16b (Projeto full stack: backend Spring Boot + frontend React)
     }
 }
